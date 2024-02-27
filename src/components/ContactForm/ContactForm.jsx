@@ -48,6 +48,7 @@ const ContactForm = ({ onAdd }) => {
             type="text"
             name="name"
             id={nameFieldId}
+            autoComplete="off"
           />
           <ErrorMessage className={css.error} name="name" as="span" />
         </div>
@@ -60,6 +61,7 @@ const ContactForm = ({ onAdd }) => {
             type="text"
             name="number"
             id={numberFieldId}
+            autoComplete="off"
           />
           <ErrorMessage className={css.error} name="number" as="span" />
         </div>
