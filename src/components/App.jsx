@@ -2,7 +2,7 @@ import css from './App.module.css';
 import ContactForm from './ContactForm/ContactForm';
 import SearchBox from './SearchBox/SearchBox';
 import ContactList from './ContactList/ContactList';
-// import { initialValues } from './ContactForm/ContactForm';
+import initialContacts from './contact.json';
 import { useState, useEffect } from 'react';
 
 const App = () => {
@@ -11,13 +11,15 @@ const App = () => {
     if (savedContacts && savedContacts !== '[]') {
       return JSON.parse(savedContacts);
     }
-    return [];
+    return initialContacts;
   });
 
   const [filter, setFilter] = useState(''); //фільтрація
 
   const addContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]); //додавання
+    setContacts(prevContact => {
+      return [...prevContact, newContact];
+    });
   };
 
   const deleteContact = contactId => {
@@ -30,9 +32,9 @@ const App = () => {
     localStorage.setItem('saved-contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const visibleContacts = contacts.filter(({ name }) =>
-    name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const visibleContacts = contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(filter.toLowerCase());
+  });
 
   return (
     <div className={css.container}>
