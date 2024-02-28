@@ -3,7 +3,7 @@ import css from './SearchBox.module.css';
 const SearchBox = ({ value, onFilter }) => {
   return (
     <div>
-      <p className={css.label}>Fined contacts by name</p>
+      <p className={css.label}>Select contacts by name</p>
       <input
         className={css.searchForm}
         type="text"
